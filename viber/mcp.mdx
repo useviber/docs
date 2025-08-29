@@ -1,0 +1,322 @@
+---
+title: "MCP Server"
+description: "Model Context Protocol integration for AI coding assistants"
+---
+
+## What is MCP?
+
+**MCP (Model Context Protocol)** is a standard that allows AI coding assistants like GitHub Copilot, Cline, and Continue to communicate with external tools and services. Viber's MCP server provides these AI tools with access to your running application context.
+
+## 🚀 Installation
+
+### Automatic Installation
+
+The Viber CLI automatically installs MCP on postinstall:
+
+```bash
+npm install -g @useviber/cli
+# MCP is automatically installed
+```
+
+### Manual Installation
+
+If automatic installation fails due to permissions:
+
+```bash
+# Using Viber CLI
+viber mcp:install
+
+# Or direct npm install
+npm install -g @useviber/mcp
+```
+
+## 🔧 Configuration
+
+### Port Configuration
+
+MCP runs on port `3337` by default. You can customize this:
+
+```bash
+# Set custom port
+export PORT=4000
+viber-mcp
+
+# Or in your IDE configuration
+{
+  "mcpServers": {
+    "viber": {
+      "command": "viber-mcp",
+      "args": ["start"],
+      "env": {
+        "PORT": "4000"
+      }
+    }
+  }
+}
+```
+
+### API Key Configuration
+
+MCP reads your Viber API key from:
+
+- `~/.viber/mcp-api-key.json` (preferred)
+- `~/.viber/auth.json` (also contains `mcpApiKey`)
+
+Check your API key status:
+
+```bash
+viber mcp:status
+```
+
+## 🔌 IDE Integration
+
+### VS Code
+
+Create `.vscode/settings.json`:
+
+```json
+{
+  "mcp.servers": {
+    "viber": {
+      "command": "viber-mcp",
+      "args": ["start"],
+      "env": {
+        "PORT": "3337"
+      }
+    }
+  }
+}
+```
+
+### Cursor
+
+Create `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "viber-mcp": {
+      "command": "viber-mcp",
+      "args": ["start"],
+      "cwd": ".",
+      "env": {
+        "VIBER_MCP_PORT": "5006",
+        "VIBER_MCP_API_KEY": "YOUR KEY"
+      }
+    }
+  }
+}
+```
+
+### Continue
+
+Add to your `~/.continue/config.py`:
+
+```python
+from continuedev.core.config import ContinueConfig
+
+config = ContinueConfig(
+    mcp_servers=[
+        {
+            "name": "viber",
+            "command": "viber-mcp",
+            "args": ["start"],
+            "env": {"PORT": "3337"}
+        }
+    ]
+)
+```
+
+## 🚀 Running MCP
+
+### Automatic (Recommended)
+
+Most IDEs and AI agents automatically start MCP when configured. You don't need to run it manually.
+
+### Manual Execution
+
+If you want to run MCP manually:
+
+```bash
+# Using Viber CLI
+viber mcp:start
+
+# Direct execution
+viber-mcp
+
+# With npx
+npx @useviber/mcp
+
+# With custom port
+PORT=4000 viber-mcp
+```
+
+## 🔍 MCP Capabilities
+
+Viber's MCP server provides AI tools with:
+
+### Application Context
+- **Live DOM state** - Current page structure and elements
+- **Framework detection** - React, Vue, Angular, Svelte, or Vanilla
+- **Component analysis** - Props, state, and component hierarchy
+- **Style information** - CSS classes, inline styles, and computed styles
+
+### Code Generation
+- **Element modification** - Change text, styles, attributes
+- **Component updates** - Modify React/Vue/Angular components
+- **Style changes** - Update CSS classes and inline styles
+- **Event handling** - Add click handlers and event listeners
+
+### File Operations
+- **Code extraction** - Get current component code
+- **File navigation** - Browse project structure
+- **Dependency analysis** - Understand imports and dependencies
+
+## 📊 Status Monitoring
+
+### Check MCP Status
+
+```bash
+# Overall MCP status
+viber mcp:status
+
+# Check if MCP is running
+viber mcp:health
+
+# View MCP logs
+viber mcp:logs
+```
+
+### Connection Verification
+
+When MCP is properly connected, you'll see:
+
+1. **IDE status** shows "Connected to MCP"
+2. **Viber CLI logs** show MCP connection updates
+3. **AI tools** can access Viber context
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**"command not found: viber-mcp"**
+```bash
+# Reinstall MCP
+viber mcp:install
+
+# Or install manually
+npm install -g @useviber/mcp
+```
+
+**"No API key found"**
+```bash
+# Login to Viber
+viber login
+
+# Check API key
+viber mcp:status
+```
+
+**"Port already in use"**
+```bash
+# Kill process using port
+lsof -ti:3337 | xargs kill -9
+
+# Or use different port
+export PORT=4000
+viber-mcp
+```
+
+**"MCP not connecting"**
+```bash
+# Check if Viber CLI is running
+viber status
+
+# Restart MCP
+viber mcp:restart
+
+# Check logs
+viber mcp:logs
+```
+
+### Debug Mode
+
+Enable verbose logging:
+
+```bash
+# Set debug environment
+export VIBER_DEBUG=true
+export MCP_DEBUG=true
+
+# Start MCP with debug
+viber-mcp
+```
+
+## 🔄 MCP Lifecycle
+
+### Startup Sequence
+
+1. **IDE/AI agent** starts MCP server
+2. **MCP server** connects to Viber Communication Server
+3. **Authentication** using stored API key
+4. **Context sync** - MCP receives current app state
+5. **Ready state** - AI tools can now use Viber context
+
+### Shutdown Sequence
+
+1. **IDE/AI agent** stops MCP server
+2. **MCP server** disconnects from Communication Server
+3. **Cleanup** - Resources are released
+
+## 📚 Examples
+
+### Basic MCP Usage
+
+Once connected, AI tools can:
+
+```typescript
+// Get current page context
+const context = await mcp.getContext();
+
+// Modify an element
+await mcp.modifyElement({
+  selector: '.button-primary',
+  changes: {
+    text: 'Click me!',
+    className: 'button-primary button-large'
+  }
+});
+
+// Update component code
+await mcp.updateComponent({
+  file: 'src/components/Button.tsx',
+  changes: {
+    props: { variant: 'primary', size: 'large' }
+  }
+});
+```
+
+## 🔗 Related Documentation
+
+<CardGroup cols={2}>
+<Card title="Connect MCP" icon="plug" href="/viber/connect-mcp">
+  Step-by-step MCP connection guide
+</Card>
+
+<Card title="CLI Commands" icon="terminal" href="/viber/cli">
+  Complete CLI reference including MCP commands
+</Card>
+
+<Card title="Extension Setup" icon="code" href="/viber/extension">
+  Set up IDE extensions that use MCP
+</Card>
+
+<Card title="Quickstart Guide" icon="rocket" href="/viber/quickstart">
+  Get started with Viber and MCP
+</Card>
+</CardGroup>
+
+---
+
+**MCP enables AI coding assistants to understand your running application and make intelligent code changes.** Configure it once and enjoy seamless AI-powered development! 🚀
+

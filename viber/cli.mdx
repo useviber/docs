@@ -1,0 +1,339 @@
+---
+title: "Viber CLI"
+description: "Complete command reference and configuration options"
+---
+
+## Installation
+
+```bash
+npm install -g @useviber/cli
+```
+
+<Tip>
+The CLI automatically installs the MCP server on postinstall. If you encounter permission errors, run `viber mcp:install` manually.
+</Tip>
+
+## 🚀 Core Commands
+
+### Start Viber
+
+Start Viber in your current project directory:
+
+```bash
+viber start
+```
+
+**What happens:**
+- Auto-detects your framework and ports
+- Starts a proxy server for your app
+- Injects the Viber widget
+- Connects to the communication server
+
+**Options:**
+```bash
+# Custom app port
+viber start --port 8080
+
+# Custom Viber CLI port
+viber start --viber-port 9000
+
+# Force specific framework
+viber start --framework react
+
+# Enable debug logging
+viber start --debug
+
+# Use CDN for plugin (production)
+viber start --use-cdn
+
+# Custom plugin CDN URL
+viber start --plugin-cdn-url https://cdn.example.com/viber-plugin.js
+```
+
+### Authentication
+
+```bash
+# Login to Viber
+viber login
+
+# Check authentication status
+viber whoami
+
+# Logout
+viber logout
+
+# Check overall status
+viber status
+```
+
+## 🔌 MCP Commands
+
+### Install MCP Server
+
+```bash
+# Install MCP globally
+viber mcp:install
+
+# Check MCP installation status
+viber mcp:status
+```
+
+### MCP Management
+
+```bash
+# Start MCP server manually
+viber mcp:start
+
+# Stop MCP server
+viber mcp:stop
+
+# Restart MCP server
+viber mcp:restart
+```
+
+## 🎯 Framework Detection
+
+Viber automatically detects your framework, but you can override it:
+
+```bash
+# Available frameworks
+viber start --framework react     # React/Next.js
+viber start --framework vue       # Vue/Nuxt
+viber start --framework angular   # Angular
+viber start --framework svelte    # Svelte/SvelteKit
+viber start --framework vanilla   # Vanilla HTML/CSS/JS
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# .env file
+LOCAL=1                    # Use localhost endpoints
+VIBER_DEBUG=true          # Enable verbose logging
+VIBER_PORT=8426          # Custom CLI port
+VIBER_APP_PORT=3000      # Custom app port
+```
+
+### Auto-generated Configuration
+
+Viber creates a `viber.json` file in your project:
+
+```json
+{
+  "appPort": 3000,
+  "viberPort": 8426,
+  "framework": "react",
+  "workspace": "/path/to/your/project",
+  "pluginUrl": "http://localhost:8426/viber-plugin.js"
+}
+```
+
+## 📊 Status & Monitoring
+
+### Check Status
+
+```bash
+# Overall Viber status
+viber status
+
+# MCP connection status
+viber mcp:status
+
+# Communication server status
+viber comm:status
+```
+
+### View Logs
+
+```bash
+# View real-time logs
+viber logs
+
+# View logs with specific level
+viber logs --level debug
+viber logs --level info
+viber logs --level error
+```
+
+## 🛠️ Development Commands
+
+### Build & Development
+
+```bash
+# Build Viber CLI
+viber build
+
+# Start in development mode
+viber dev
+
+# Run tests
+viber test
+
+# Lint code
+viber lint
+```
+
+### Plugin Management
+
+```bash
+# Serve local plugin
+viber plugin:serve
+
+# Build plugin
+viber plugin:build
+
+# Deploy plugin to CDN
+viber plugin:deploy
+```
+
+## 🌐 Network & Ports
+
+### Port Configuration
+
+```bash
+# Default ports
+App Port: 3000 (React), 5173 (Vue), 4200 (Angular)
+Viber Port: 8426
+MCP Port: 3337
+
+# Custom ports
+viber start --port 8080 --viber-port 9000
+```
+
+### Network Options
+
+```bash
+# Bind to specific host
+viber start --host 0.0.0.0
+
+# Use HTTPS
+viber start --https
+
+# Custom SSL certificate
+viber start --ssl-cert ./cert.pem --ssl-key ./key.pem
+```
+
+## 🔍 Debug & Troubleshooting
+
+### Debug Mode
+
+```bash
+# Enable debug logging
+viber start --debug
+
+# Verbose output
+viber start --verbose
+
+# Show network requests
+viber start --debug --show-requests
+```
+
+### Health Checks
+
+```bash
+# Check CLI health
+viber health
+
+# Check communication server
+viber comm:health
+
+# Check MCP server
+viber mcp:health
+```
+
+## 📱 Plugin Options
+
+### Plugin Configuration
+
+```bash
+# Use local plugin (default)
+viber start
+
+# Use CDN plugin
+viber start --use-cdn
+
+# Custom plugin URL
+viber start --plugin-url https://cdn.example.com/viber-plugin.js
+
+# Plugin version
+viber start --plugin-version 1.2.3
+```
+
+## 🚨 Common Issues
+
+### Port Conflicts
+
+```bash
+# Kill process using port
+lsof -ti:3000 | xargs kill -9
+
+# Use different port
+viber start --port 3001
+```
+
+### Permission Issues
+
+```bash
+# Fix MCP installation
+viber mcp:install
+
+# Check permissions
+ls -la ~/.viber/
+```
+
+### Connection Issues
+
+```bash
+# Check network
+viber network:test
+
+# Reset configuration
+viber config:reset
+```
+
+## 📚 Examples
+
+### React Project
+```bash
+cd my-react-app
+viber start --framework react --port 3000
+```
+
+### Vue Project with Custom Port
+```bash
+cd my-vue-app
+viber start --framework vue --port 8080 --viber-port 9000
+```
+
+### Production Setup
+```bash
+cd my-production-app
+viber start --use-cdn --port 80 --viber-port 9000
+```
+
+## 🔗 Related Commands
+
+<CardGroup cols={2}>
+<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
+  Connect Viber to your IDE and AI tools
+</Card>
+
+<Card title="Plugin Usage" icon="puzzle-piece" href="/viber/plugin">
+  Integrate the universal web plugin
+</Card>
+
+<Card title="Extension Setup" icon="code" href="/viber/extension">
+  Set up IDE extensions and integrations
+</Card>
+
+<Card title="Quickstart Guide" icon="rocket" href="/viber/quickstart">
+  Get started with Viber in minutes
+</Card>
+</CardGroup>
+
+---
+
+**Need help with a specific command?** Check `viber --help` or `viber <command> --help` for detailed usage information.
+

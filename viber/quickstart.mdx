@@ -1,0 +1,244 @@
+---
+title: "Viber Quickstart"
+description: "Get started with Viber in under 2 minutes"
+---
+
+## What is Viber?
+
+**Viber** is an AI-powered coding assistant that transforms how you develop frontend applications. Instead of manually writing code, you can:
+
+- 🎯 **Click any element** on your page
+- 💬 **Describe what you want to change** in natural language
+- ✨ **Watch AI generate the code** and apply changes instantly
+
+Viber works with **ALL major frameworks**: React, Vue, Angular, Svelte, and Vanilla JavaScript.
+
+## 🚀 Quick Start (2 minutes)
+
+### Step 1: Install Viber CLI
+
+```bash
+npm install -g @useviber/cli
+```
+
+<Tip>
+The CLI automatically installs the MCP server. If you get permission errors, run: `viber mcp:install`
+</Tip>
+
+### Step 2: Start Viber in Your Project
+
+Navigate to your project directory and run:
+
+```bash
+cd your-project
+viber start
+```
+
+**What happens automatically:**
+- Viber auto-detects your framework and ports
+- Creates a proxy server that intercepts your app
+- Injects the Viber widget into your HTML automatically
+- Opens your browser with the proxied version
+- You see the floating Viber widget (🤖) immediately
+
+### Step 3: Use Viber
+
+1. **Your app opens automatically** in the browser (through Viber's proxy)
+2. **Look for the floating Viber widget** (🤖) in the bottom-right corner
+3. **Click the widget** to open the Viber interface
+4. **Click any element** on your page to select it
+5. **Describe your changes** using natural language
+6. **Watch the magic happen!** ✨
+
+## 🌐 Framework Examples
+
+### React Project
+```bash
+cd my-react-app
+npm start          # Start your React dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+### Vue Project
+```bash
+cd my-vue-app
+npm run dev        # Start your Vue dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+### Angular Project
+```bash
+cd my-angular-app
+ng serve           # Start your Angular dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+## 🔧 How the Proxy Works
+
+### Before Viber
+```
+Your App (port 3000) → Browser
+```
+
+### After Running `viber start`
+```
+Your App (port 3000) → Viber Proxy (port 8426) → Browser
+```
+
+**The proxy automatically:**
+- Injects the Viber widget into your HTML
+- Adds necessary scripts and styles
+- Handles communication between your app and Viber
+- Manages element selection and AI interactions
+
+## 🔧 Configuration Options
+
+### Custom Ports
+```bash
+# If your app runs on a different port
+viber start --port 8080
+
+# Custom Viber proxy port
+viber start --viber-port 9000
+```
+
+### Framework Detection
+```bash
+# Force specific framework
+viber start --framework react
+
+# Available frameworks: react, vue, angular, svelte, vanilla
+```
+
+### Debug Mode
+```bash
+# Enable verbose logging
+viber start --debug
+```
+
+## 🔌 Connect Your IDE
+
+To get the full Viber experience, connect it to your IDE or AI coding assistant:
+
+<Card
+  title="Connect MCP"
+  icon="plug"
+  href="/viber/connect-mcp"
+>
+  Connect Viber to VS Code, Cursor, or any MCP-compatible tool
+</Card>
+
+## 📱 What You'll See
+
+After running `viber start`, you'll see:
+
+1. **Terminal output** showing Viber is running and proxy is created
+2. **Browser opens automatically** with your app proxied through Viber
+3. **Floating widget** (🤖) appears in the bottom-right corner
+4. **Element selection** when you click the widget
+5. **No code changes** needed in your project files
+
+## 🎯 Try It Out
+
+Here's a simple example to test Viber:
+
+1. **Start Viber** in your project: `viber start`
+2. **Browser opens** with your app and Viber widget
+3. **Click the Viber widget** (🤖)
+4. **Click any button or element** on your page
+5. **Type**: "Make this button blue and add a hover effect"
+6. **Press Enter** and watch the changes happen!
+
+## 🚨 Troubleshooting
+
+### "Port already in use"
+```bash
+# Kill the process using the port
+lsof -ti:8426 | xargs kill -9
+
+# Or use a different port
+viber start --viber-port 9000
+```
+
+### "Viber not connecting"
+```bash
+# Check if your dev server is running
+npm run dev
+
+# Try debug mode
+viber start --debug
+```
+
+### "Widget not appearing"
+- **Make sure you're accessing the proxy URL** (http://localhost:8426), not your original dev server
+- Refresh the page
+- Check browser console for errors
+- Ensure Viber CLI is running
+
+### "Framework not detected"
+```bash
+# Force framework detection
+viber start --framework react
+
+# Check project structure
+ls -la package.json
+```
+
+## 🔍 What's Actually Happening
+
+### Behind the Scenes
+
+When you run `viber start`:
+
+1. **Port Detection**: Viber scans for your running dev server
+2. **Proxy Creation**: Creates a proxy server on port 8426
+3. **Plugin Injection**: Automatically injects Viber scripts into your HTML
+4. **Widget Creation**: Adds the floating Viber widget to your page
+5. **Communication Setup**: Establishes WebSocket connections for real-time updates
+
+### No Code Changes Required
+
+Your project files remain completely unchanged:
+- ✅ **No imports** to add
+- ✅ **No initialization** code needed
+- ✅ **No build process** modifications
+- ✅ **No dependencies** to install
+
+## 📚 Next Steps
+
+<CardGroup cols={2}>
+<Card title="CLI Commands" icon="terminal" href="/viber/cli">
+  Learn all available Viber CLI commands and options
+</Card>
+
+<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
+  Connect Viber to your favorite IDE and AI tools
+</Card>
+
+<Card title="Plugin Details" icon="puzzle-piece" href="/viber/plugin">
+  Learn how Viber automatically injects itself
+</Card>
+
+<Card title="Extension Setup" icon="code" href="/viber/extension">
+  Set up IDE extensions and browser integrations
+</Card>
+</CardGroup>
+
+## 🆘 Need Help?
+
+- **Discord Community**: [Join us](https://discord.gg/JK2KtgUz)
+- **GitHub Issues**: [Report bugs](https://github.com/useviber/viber/issues)
+- **Documentation**: Browse the guides above
+
+---
+
+**Ready to transform your frontend development?** 🚀
+
+Run `viber start` in your project and start making AI-powered code changes today! **No manual integration required!**
+

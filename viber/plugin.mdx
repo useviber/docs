@@ -1,0 +1,229 @@
+---
+title: "Universal Plugin"
+description: "How Viber automatically injects itself into your running application"
+---
+
+## How Viber Works
+
+**Viber automatically injects itself** into your running application - no manual integration required! Here's how it works:
+
+1. **Run `viber start`** in your project directory
+2. **Viber creates a proxy server** that intercepts your app
+3. **Your app runs through the proxy** with Viber automatically injected
+4. **The Viber widget appears** in your browser automatically
+5. **Start making AI-powered changes** immediately
+
+## 🔧 How the Proxy Works
+
+### Before Viber
+```
+Your App (port 3000) → Browser
+```
+
+### After Running `viber start`
+```
+Your App (port 3000) → Viber Proxy (port 8426) → Browser
+```
+
+The proxy automatically:
+- **Injects the Viber widget** into your HTML
+- **Adds necessary scripts** and styles
+- **Handles communication** between your app and Viber
+- **Manages element selection** and AI interactions
+
+## 🎯 What You'll See
+
+### 1. Terminal Output
+```bash
+$ viber start
+🚀 Starting Viber...
+✅ Framework detected: React
+✅ App running on port 3000
+✅ Proxy server started on port 8426
+✅ Viber widget injected
+🌐 Open http://localhost:8426 to see your app with Viber
+```
+
+### 2. Browser Experience
+- **Your app opens automatically** at the proxy URL
+- **Floating Viber widget** (🤖) appears in bottom-right corner
+- **No code changes** needed in your project
+- **Start using Viber immediately**
+
+## 🌐 Framework Support
+
+Viber automatically detects and works with:
+
+- **React** - Auto-detects JSX, components, hooks
+- **Vue** - Auto-detects SFC, composition API, templates
+- **Angular** - Auto-detects CLI, services, dependency injection
+- **Svelte** - Auto-detects components, stores, reactive statements
+- **Vanilla JS** - Auto-detects pure HTML/CSS/JavaScript
+
+**No framework-specific setup required!**
+
+## 🔌 Advanced Configuration
+
+### Custom Ports
+```bash
+# If your app runs on a different port
+viber start --port 8080
+
+# Custom Viber proxy port
+viber start --viber-port 9000
+```
+
+### Framework Override
+```bash
+# Force specific framework detection
+viber start --framework react
+viber start --framework vue
+viber start --framework angular
+viber start --framework svelte
+viber start --framework vanilla
+```
+
+### Debug Mode
+```bash
+# Enable verbose logging
+viber start --debug
+
+# See what Viber is doing
+viber start --verbose
+```
+
+## 📱 Production vs Development
+
+### Development (Default)
+```bash
+viber start
+# Serves plugin locally from proxy
+# Available at http://localhost:8426/viber-plugin.js
+```
+
+### Production
+```bash
+viber start --use-cdn
+# Loads plugin from CDN instead of local proxy
+# Useful for production deployments
+```
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+**"Widget not appearing":**
+```bash
+# Check if Viber is running
+viber status
+
+# Restart Viber
+viber start
+
+# Check proxy URL
+# Make sure you're accessing http://localhost:8426, not your original port
+```
+
+**"Port conflicts":**
+```bash
+# Kill process using port
+lsof -ti:8426 | xargs kill -9
+
+# Use different port
+viber start --viber-port 9000
+```
+
+**"Framework not detected":**
+```bash
+# Force framework detection
+viber start --framework react
+
+# Check project structure
+ls -la package.json
+```
+
+### Debug Mode
+```bash
+# Enable debug logging
+viber start --debug
+
+# Check Viber status
+viber status
+
+# View logs
+viber logs
+```
+
+## 🔍 What's Actually Happening
+
+### Behind the Scenes
+
+When you run `viber start`:
+
+1. **Port Detection**: Viber scans for your running dev server
+2. **Proxy Creation**: Creates a proxy server on port 8426
+3. **Plugin Injection**: Automatically injects Viber scripts into your HTML
+4. **Widget Creation**: Adds the floating Viber widget to your page
+5. **Communication Setup**: Establishes WebSocket connections for real-time updates
+
+### No Code Changes Required
+
+Your project files remain completely unchanged:
+- ✅ **No imports** to add
+- ✅ **No initialization** code needed
+- ✅ **No build process** modifications
+- ✅ **No dependencies** to install
+
+## 📚 Examples
+
+### React Project
+```bash
+cd my-react-app
+npm start          # Start your React dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+### Vue Project
+```bash
+cd my-vue-app
+npm run dev        # Start your Vue dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+### Angular Project
+```bash
+cd my-angular-app
+ng serve           # Start your Angular dev server
+# In another terminal:
+viber start        # Start Viber proxy
+# Browser opens automatically with Viber injected
+```
+
+## 🔗 Related Documentation
+
+<CardGroup cols={2}>
+<Card title="Quickstart Guide" icon="rocket" href="/viber/quickstart">
+  Get started with Viber in minutes
+</Card>
+
+<Card title="CLI Commands" icon="terminal" href="/viber/cli">
+  Learn all available CLI commands
+</Card>
+
+<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
+  Connect AI coding assistants via MCP
+</Card>
+
+<Card title="Extension Setup" icon="code" href="/viber/extension">
+  Set up IDE extensions for full integration
+</Card>
+</CardGroup>
+
+---
+
+**Viber automatically injects itself into your running application - no manual integration required!** Just run `viber start` and start making AI-powered changes immediately! 🚀
+

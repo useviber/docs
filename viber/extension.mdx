@@ -1,0 +1,453 @@
+---
+title: "IDE Extensions & Browser Integrations"
+description: "Set up Viber extensions for VS Code, Cursor, and other development environments"
+---
+
+## What are Viber Extensions?
+
+**Viber Extensions** integrate Viber directly into your development environment, providing:
+
+- 🔌 **Native IDE integration** - Use Viber without leaving your editor
+- 🎯 **Context-aware assistance** - AI tools understand your current code
+- 🔄 **Real-time synchronization** - Changes sync between browser and IDE
+- 🚀 **Enhanced productivity** - Streamlined AI-powered development workflow
+
+## 🚀 Supported Environments
+
+### Primary Support
+
+- **VS Code** - Full extension with marketplace installation
+- **Cursor** - Built-in integration with MCP
+- **Continue** - AI coding assistant with MCP support
+
+### Extended Support
+
+- **Any MCP-compatible IDE** - Via Viber's MCP server
+- **Browser extensions** - Chrome, Firefox, Safari
+- **Desktop apps** - Electron-based applications
+
+## 🔌 VS Code Extension
+
+### Installation
+
+1. **Open VS Code**
+2. **Go to Extensions** (Ctrl+Shift+X / Cmd+Shift+X)
+3. **Search for "Viber"**
+4. **Click Install**
+
+Or install via command line:
+
+```bash
+code --install-extension useviber.viber
+```
+
+### Configuration
+
+Create `.vscode/settings.json` in your project:
+
+```json
+{
+    "viber.enabled": true,
+    "viber.autoStart": true,
+    "viber.workspace": "/path/to/your/project",
+    "viber.debug": false,
+    "viber.theme": "auto"
+}
+```
+
+### Usage
+
+1. **Open your project** in VS Code
+2. **Start Viber** in your project directory: `viber start`
+3. **Extension auto-connects** to the running Viber instance
+4. **Use Command Palette** (Ctrl+Shift+P / Cmd+Shift+P):
+   - `Viber: Open Interface`
+   - `Viber: Select Element`
+   - `Viber: Apply Changes`
+
+### Features
+
+- **Command Palette integration** - Quick access to Viber commands
+- **Status bar indicator** - Shows connection status
+- **Output panel** - View Viber logs and errors
+- **Workspace management** - Auto-detects project structure
+
+## 🎯 Cursor Integration
+
+### Built-in Support
+
+Cursor has native MCP support, making Viber integration seamless:
+
+1. **Install Viber CLI**: `npm install -g @useviber/cli`
+2. **Start Viber** in your project: `viber start`
+3. **Cursor auto-detects** and connects to Viber
+
+### MCP Configuration
+
+Create `.cursor/mcp.json`:
+
+```json
+{
+    "mcpServers": {
+        "viber": {
+            "command": "viber-mcp",
+            "args": ["start"],
+            "env": {
+                "PORT": "3337"
+            }
+        }
+    }
+}
+```
+
+### Usage in Cursor
+
+- **AI chat** automatically has access to Viber context
+- **Code generation** understands your running application
+- **Element modifications** sync between browser and editor
+- **Real-time updates** as you make changes
+
+## 🔧 Continue Integration
+
+### Setup
+
+1. **Install Continue**: `pip install continuedev`
+2. **Create config**: `continue config`
+3. **Add Viber MCP server**
+
+### Configuration
+
+Edit `~/.continue/config.py`:
+
+```python
+from continuedev.core.config import ContinueConfig
+
+config = ContinueConfig(
+    mcp_servers=[
+        {
+            "name": "viber",
+            "command": "viber-mcp",
+            "args": ["start"],
+            "env": {"PORT": "3337"}
+        }
+    ]
+)
+```
+
+### Usage
+
+- **Start Continue**: `continue`
+- **Viber context** is automatically available
+- **AI understands** your running application
+- **Make changes** using natural language
+
+## 🌐 Browser Extensions
+
+### Chrome Extension
+
+1. **Download extension** from Chrome Web Store
+2. **Pin to toolbar** for easy access
+3. **Click extension icon** to open Viber interface
+4. **Select elements** and describe changes
+
+### Firefox Extension
+
+1. **Install from Firefox Add-ons**
+2. **Configure workspace** in extension options
+3. **Use toolbar button** to access Viber
+4. **Element selection** works across all sites
+
+### Safari Extension
+
+1. **Install from Mac App Store**
+2. **Enable in Safari preferences**
+3. **Use toolbar button** for Viber access
+4. **Full integration** with Safari's developer tools
+
+## 🖥️ Desktop Applications
+
+### Electron Apps
+
+```javascript
+// main.js
+const { app, BrowserWindow } = require('electron');
+const { Viber } = require('@useviber/plugin');
+
+app.whenReady().then(() => {
+    const win = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
+
+    win.loadFile('index.html');
+
+    // Initialize Viber in Electron
+    Viber.init({
+        apiKey: process.env.VIBER_API_KEY,
+        workspace: process.cwd(),
+        isElectron: true
+    });
+});
+```
+
+### Tauri Apps
+
+```rust
+// main.rs
+use tauri::Manager;
+
+fn main() {
+    tauri::Builder::default()
+        .setup(|app| {
+            let window = app.get_window("main").unwrap();
+            
+            // Initialize Viber in Tauri
+            window.eval(&format!(
+                r#"
+                import('@useviber/plugin').then(({{ Viber }}) => {{
+                    Viber.init({{
+                        apiKey: '{}',
+                        workspace: '{}',
+                        isTauri: true
+                    }});
+                }});
+                "#,
+                std::env::var("VIBER_API_KEY").unwrap_or_default(),
+                std::env::current_dir().unwrap().to_str().unwrap()
+            )).unwrap();
+            
+            Ok(())
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+}
+```
+
+## 🔧 Extension Configuration
+
+### Global Settings
+
+```json
+{
+    "viber": {
+        "enabled": true,
+        "autoConnect": true,
+        "defaultWorkspace": "/path/to/default/project",
+        "theme": "auto",
+        "debug": false,
+        "notifications": true
+    }
+}
+```
+
+### Project-specific Settings
+
+```json
+{
+    "viber.workspace": "/path/to/this/project",
+    "viber.framework": "react",
+    "viber.port": 3000,
+    "viber.viberPort": 8426
+}
+```
+
+### Environment Variables
+
+```bash
+# .env file
+VIBER_EXTENSION_ENABLED=true
+VIBER_AUTO_CONNECT=true
+VIBER_DEFAULT_WORKSPACE=/path/to/project
+VIBER_DEBUG=false
+```
+
+## 🎨 Customization
+
+### Extension Themes
+
+```json
+{
+    "viber.theme": "custom",
+    "viber.customTheme": {
+        "primary": "#ff6b6b",
+        "secondary": "#4ecdc4",
+        "background": "#f7f7f7",
+        "text": "#2d3436"
+    }
+}
+```
+
+### Keyboard Shortcuts
+
+```json
+{
+    "keybindings": [
+        {
+            "command": "viber.openInterface",
+            "key": "ctrl+shift+v",
+            "when": "editorTextFocus"
+        },
+        {
+            "command": "viber.selectElement",
+            "key": "ctrl+shift+e",
+            "when": "editorTextFocus"
+        }
+    ]
+}
+```
+
+### Status Bar Customization
+
+```json
+{
+    "viber.statusBar": {
+        "showConnection": true,
+        "showWorkspace": true,
+        "showFramework": true,
+        "position": "left"
+    }
+}
+```
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+**Extension not connecting:**
+```bash
+# Check if Viber CLI is running
+viber status
+
+# Restart Viber
+viber restart
+
+# Check extension logs
+# VS Code: View -> Output -> Viber
+```
+
+**MCP connection failed:**
+```bash
+# Check MCP status
+viber mcp:status
+
+# Reinstall MCP
+viber mcp:install
+
+# Check API key
+viber whoami
+```
+
+**Element selection not working:**
+- Ensure Viber is running in your project
+- Check browser console for errors
+- Verify extension is enabled
+- Restart your IDE
+
+### Debug Mode
+
+```json
+{
+    "viber.debug": true,
+    "viber.verbose": true,
+    "viber.logLevel": "debug"
+}
+```
+
+### Extension Logs
+
+**VS Code:**
+- View → Output → Viber
+- Developer Tools → Console
+
+**Cursor:**
+- Help → Toggle Developer Tools → Console
+
+**Browser Extensions:**
+- Right-click extension → Inspect
+- Check browser console
+
+## 📱 Mobile Development
+
+### React Native
+
+```javascript
+// App.js
+import { Viber } from '@useviber/plugin';
+
+const App = () => {
+    useEffect(() => {
+        Viber.init({
+            apiKey: 'your-api-key',
+            workspace: '/path/to/project',
+            isReactNative: true,
+            mobile: {
+                position: 'bottom-center',
+                touchFriendly: true
+            }
+        });
+    }, []);
+
+    return (
+        <View style={styles.container}>
+            <Text>My React Native App</Text>
+        </View>
+    );
+};
+```
+
+### Flutter
+
+```dart
+// main.dart
+import 'package:flutter/material.dart';
+import 'package:viber_plugin/viber_plugin.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Initialize Viber
+    ViberPlugin.init(
+      apiKey: 'your-api-key',
+      workspace: '/path/to/project',
+    );
+    
+    return MaterialApp(
+      title: 'Flutter App',
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+## 🔗 Related Documentation
+
+<CardGroup cols={2}>
+<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
+  Learn how MCP enables IDE integration
+</Card>
+
+<Card title="CLI Commands" icon="terminal" href="/viber/cli">
+  Use CLI commands to manage extensions
+</Card>
+
+<Card title="Plugin Usage" icon="puzzle-piece" href="/viber/plugin">
+  Integrate the universal web plugin
+</Card>
+
+<Card title="Quickstart Guide" icon="rocket" href="/viber/quickstart">
+  Get started with Viber and extensions
+</Card>
+</CardGroup>
+
+---
+
+**Viber Extensions bring AI-powered development directly into your favorite tools.** Set them up once and enjoy seamless integration! 🚀
+

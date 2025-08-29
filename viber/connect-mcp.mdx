@@ -1,0 +1,86 @@
+---
+title: "Connect MCP to Viber"
+description: "Configure your IDE/agent MCP to talk to Viber"
+---
+
+This guide shows how to connect your MCP server to Viber so your IDE/AI agent can interact with your running app via the Viber CLI and communication layer.
+
+## Prerequisites
+
+- Viber CLI installed globally (auto-installs MCP on postinstall):
+
+```bash
+npm i -g @useviber/cli
+```
+
+<Tip>
+If auto-install fails due to permissions, run: `viber mcp:install` or `npm i -g @useviber/mcp`.
+</Tip>
+
+## 1) Start Viber CLI in your project
+
+Run from your project directory:
+
+```bash
+viber start
+```
+
+This serves the universal plugin and connects the CLI to the Viber Communication Server.
+
+## 2) Ensure MCP API key is available
+
+Viber stores your MCP API key after authentication in one of:
+
+- `~/.viber/mcp-api-key.json` (preferred)
+- `~/.viber/auth.json` (also contains `mcpApiKey`)
+
+Check status:
+
+```bash
+viber mcp:status
+```
+
+## 3) Configure your IDE/agent to launch MCP
+
+Most IDEs/agents allow configuring an MCP server command. Example (Cursor `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "viber": {
+      "command": "viber-mcp",
+      "args": ["start"],
+      "env": {
+        "PORT": "3337"
+      }
+    }
+  }
+}
+```
+
+Notes:
+- `viber-mcp` is installed globally by `@useviber/mcp`.
+- The `args` array is optional; `viber-mcp` starts without args as well.
+- `PORT` defaults to `3337` if not provided.
+
+## 4) Run MCP manually (optional)
+
+If you want to run MCP yourself:
+
+```bash
+viber-mcp
+# or
+npx @useviber/mcp
+```
+
+## 5) Verify connection
+
+- In your IDE/agent, enable the configured MCP server named `viber`.
+- Check CLI logs while `viber start` is running – MCP connection updates will appear once the server reports status.
+
+## Troubleshooting
+
+- "command not found: viber-mcp" → run `viber mcp:install`.
+- No API key → `viber login`, then re-run `viber mcp:status`.
+- Port in use → set a different `PORT` in your MCP config and restart.
+
