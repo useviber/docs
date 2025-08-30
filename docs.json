@@ -131,7 +131,7 @@
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "/viber/quickstart"
+      "href": "https://useviber.dev/quickstart"
     }
   },
   "contextual": {
