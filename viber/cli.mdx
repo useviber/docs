@@ -9,10 +9,6 @@ description: "Complete command reference and configuration options"
 npm install -g @useviber/cli
 ```
 
-<Tip>
-The CLI automatically installs the MCP server on postinstall. If you encounter permission errors, run `viber mcp:install` manually.
-</Tip>
-
 ## 🚀 Core Commands
 
 ### Start Viber
@@ -66,29 +62,32 @@ viber logout
 viber status
 ```
 
-## 🔌 MCP Commands
+## 🔌 AI Bridge Commands
 
-### Install MCP Server
+### AI Bridge Status
 
 ```bash
-# Install MCP globally
-viber mcp:install
+# Check AI Bridge status
+viber bridge:status
 
-# Check MCP installation status
-viber mcp:status
+# List available AI providers
+viber bridge:list
+
+# Test AI Bridge connection
+viber bridge:test
 ```
 
-### MCP Management
+### AI Bridge Management
 
 ```bash
-# Start MCP server manually
-viber mcp:start
+# Start AI Bridge service
+viber bridge:start
 
-# Stop MCP server
-viber mcp:stop
+# Stop AI Bridge service
+viber bridge:stop
 
-# Restart MCP server
-viber mcp:restart
+# Restart AI Bridge service
+viber bridge:restart
 ```
 
 ## 🎯 Framework Detection
@@ -98,9 +97,9 @@ Viber automatically detects your framework, but you can override it:
 ```bash
 # Available frameworks
 viber start --framework react     # React/Next.js
-viber start --framework vue       # Vue/Nuxt
+viber start --framework vue       # Vue/Nuxt.js
 viber start --framework angular   # Angular
-viber start --framework svelte    # Svelte/SvelteKit
+viber start --framework svelte    # Svelte
 viber start --framework vanilla   # Vanilla HTML/CSS/JS
 ```
 
@@ -137,9 +136,6 @@ Viber creates a `viber.json` file in your project:
 ```bash
 # Overall Viber status
 viber status
-
-# MCP connection status
-viber mcp:status
 
 # Communication server status
 viber comm:status
@@ -196,7 +192,6 @@ viber plugin:deploy
 # Default ports
 App Port: 3000 (React), 5173 (Vue), 4200 (Angular)
 Viber Port: 8426
-MCP Port: 3337
 
 # Custom ports
 viber start --port 8080 --viber-port 9000
@@ -238,9 +233,6 @@ viber health
 
 # Check communication server
 viber comm:health
-
-# Check MCP server
-viber mcp:health
 ```
 
 ## 📱 Plugin Options
@@ -276,9 +268,6 @@ viber start --port 3001
 ### Permission Issues
 
 ```bash
-# Fix MCP installation
-viber mcp:install
-
 # Check permissions
 ls -la ~/.viber/
 ```
@@ -316,8 +305,8 @@ viber start --use-cdn --port 80 --viber-port 9000
 ## 🔗 Related Commands
 
 <CardGroup cols={2}>
-<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
-  Connect Viber to your IDE and AI tools
+<Card title="AI Bridge Setup" icon="brain" href="/viber/ai-bridge">
+  Connect Viber to Cursor CLI and other local AI coding agents
 </Card>
 
 <Card title="Plugin Usage" icon="puzzle-piece" href="/viber/plugin">

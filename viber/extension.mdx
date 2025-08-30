@@ -17,12 +17,12 @@ description: "Set up Viber extensions for VS Code, Cursor, and other development
 ### Primary Support
 
 - **VS Code** - Full extension with marketplace installation
-- **Cursor** - Built-in integration with MCP
-- **Continue** - AI coding assistant with MCP support
+- **Cursor** - Built-in integration with AI Bridge
+- **Local AI Tools** - Cursor CLI and other CLI-based AI agents
 
 ### Extended Support
 
-- **Any MCP-compatible IDE** - Via Viber's MCP server
+- **Any CLI-based AI tool** - Via Viber's AI Bridge system
 - **Browser extensions** - Chrome, Firefox, Safari
 - **Desktop apps** - Electron-based applications
 
@@ -76,36 +76,31 @@ Create `.vscode/settings.json` in your project:
 
 ### Built-in Support
 
-Cursor has native MCP support, making Viber integration seamless:
+Cursor has native CLI integration, making Viber AI Bridge integration seamless:
 
 1. **Install Viber CLI**: `npm install -g @useviber/cli`
-2. **Start Viber** in your project: `viber start`
-3. **Cursor auto-detects** and connects to Viber
+2. **Install Cursor CLI**: `npm install -g @cursor/cli`
+3. **Start Viber** in your project: `viber start`
+4. **Select Cursor Bridge** in the AI Provider Selection
 
-### MCP Configuration
+### AI Bridge Configuration
 
-Create `.cursor/mcp.json`:
+The AI Bridge automatically detects and uses Cursor CLI:
 
-```json
-{
-    "mcpServers": {
-        "viber": {
-            "command": "viber-mcp",
-            "args": ["start"],
-            "env": {
-                "PORT": "3337"
-            }
-        }
-    }
-}
+```bash
+# Verify Cursor CLI installation
+cursor-agent --version
+
+# Start Viber with AI Bridge
+viber start
 ```
 
 ### Usage in Cursor
 
-- **AI chat** automatically has access to Viber context
-- **Code generation** understands your running application
-- **Element modifications** sync between browser and editor
-- **Real-time updates** as you make changes
+- **Select Cursor Bridge** as your AI provider in Viber
+- **Element selection** provides context to Cursor CLI
+- **Local processing** - No external servers required
+- **Real-time streaming** - See AI responses as they generate
 
 ## 🔧 Continue Integration
 
@@ -113,35 +108,31 @@ Create `.cursor/mcp.json`:
 
 1. **Install Continue**: `pip install continuedev`
 2. **Create config**: `continue config`
-3. **Add Viber MCP server**
+3. **Use Viber AI Bridge** for local AI processing
 
 ### Configuration
 
-Edit `~/.continue/config.py`:
+The AI Bridge automatically integrates with Continue:
 
-```python
-from continuedev.core.config import ContinueConfig
+```bash
+# Install Viber CLI
+npm install -g @useviber/cli
 
-config = ContinueConfig(
-    mcp_servers=[
-        {
-            "name": "viber",
-            "command": "viber-mcp",
-            "args": ["start"],
-            "env": {"PORT": "3337"}
-        }
-    ]
-)
+# Install Cursor CLI (for AI Bridge)
+npm install -g @cursor/cli
+
+# Start Viber with AI Bridge
+viber start
 ```
 
 ### Usage
 
 - **Start Continue**: `continue`
-- **Viber context** is automatically available
-- **AI understands** your running application
-- **Make changes** using natural language
+- **Select Cursor Bridge** in Viber's AI Provider Selection
+- **Element selection** provides context to AI
+- **Local processing** - No external servers required
 
-## 🌐 Browser Extensions
+## �� Browser Extensions
 
 ### Chrome Extension
 
@@ -329,13 +320,13 @@ viber restart
 # VS Code: View -> Output -> Viber
 ```
 
-**MCP connection failed:**
+**AI Bridge connection failed:**
 ```bash
-# Check MCP status
-viber mcp:status
+# Check AI Bridge status
+viber bridge:status
 
-# Reinstall MCP
-viber mcp:install
+# Verify Cursor CLI installation
+cursor-agent --version
 
 # Check API key
 viber whoami
@@ -430,8 +421,8 @@ class MyApp extends StatelessWidget {
 ## 🔗 Related Documentation
 
 <CardGroup cols={2}>
-<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
-  Learn how MCP enables IDE integration
+<Card title="AI Bridge Setup" icon="brain" href="/viber/ai-bridge">
+  Learn how AI Bridge enables local AI integration
 </Card>
 
 <Card title="CLI Commands" icon="terminal" href="/viber/cli">

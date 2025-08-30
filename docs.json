@@ -29,10 +29,9 @@
             ]
           },
           {
-            "group": "Integration",
+            "group": "AI Integration",
             "pages": [
-              "viber/connect-mcp",
-              "viber/mcp"
+              "viber/ai-bridge"
             ]
           }
         ]
@@ -141,7 +140,6 @@
      "chatgpt",
      "claude",
      "perplexity",
-     "mcp",
      "cursor",
      "vscode"
    ]

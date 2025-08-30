@@ -5,7 +5,7 @@ description: "Transform your frontend development with AI-powered code changes"
 
 ## Welcome to Viber
 
-**Viber** is an AI-powered coding assistant that sits inside your browser, letting you make precise, atomic changes to your frontend with help from AI coding assistants like GitHub Copilot, Cline, and Continue.
+**Viber** is an AI-powered coding assistant that sits inside your browser, letting you make precise, atomic changes to your frontend with help from AI coding assistants like Cursor CLI and other local AI tools.
 
 <Card
   title="Get Started with Viber"
@@ -19,7 +19,7 @@ description: "Transform your frontend development with AI-powered code changes"
 ## ✨ What Viber Does
 
 - 🤖 **AI-Powered Code Changes** - Make precise frontend modifications with AI assistance
-- 🔌 **Multi-IDE Support** - Works with VS Code, Cursor, and other IDEs
+- 🔌 **Local AI Bridge Integration** - Connect to Cursor CLI and other local AI coding agents
 - 🌐 **Universal Framework Support** - Works with ALL major frameworks: React, Vue, Angular, Svelte, and Vanilla JavaScript
 - 🎯 **Element Selection** - Click any element on your page to modify it
 - 🔄 **Real-time Updates** - See changes instantly without page refresh
@@ -37,11 +37,11 @@ description: "Transform your frontend development with AI-powered code changes"
     Install the CLI and start Viber in your project in under 2 minutes.
   </Card>
   <Card
-    title="Connect Your IDE"
-    icon="code"
-    href="/viber/connect-mcp"
+    title="AI Bridge Setup"
+    icon="brain"
+    href="/viber/ai-bridge"
   >
-    Connect Viber to your favorite IDE or AI coding assistant.
+    Connect Viber to Cursor CLI and other local AI coding agents.
   </Card>
   <Card
     title="How It Works"
@@ -69,24 +69,26 @@ description: "Transform your frontend development with AI-powered code changes"
 - **Svelte** - Complete Svelte components, stores, and reactive statements
 - **Vanilla JavaScript** - Pure HTML/CSS/JS with DOM manipulation support
 
-## 🔌 IDE Integration
+## 🔌 AI Bridge Integration
 
-Connect Viber to your favorite development environment:
+Connect Viber to your favorite local AI coding agents:
 
-- **VS Code** - Native extension support
-- **Cursor** - Built-in integration
-- **Any IDE** - MCP (Model Context Protocol) support for AI agents
+- **Cursor CLI** - Native integration with Cursor's AI coding assistant
+- **Local AI Tools** - Bridge to any CLI-based AI coding agent
+- **Streaming Output** - Real-time AI responses with smart buffering
 
 ## 🏗️ How It Works
 
 1. **Install Viber CLI**: `npm install -g @useviber/cli`
-2. **Start Viber** in your project directory: `viber start`
-3. **Viber creates a proxy** that intercepts your running app
-4. **Your app opens automatically** in the browser with Viber injected
-5. **Click the floating Viber icon** (🤖) in the bottom-right corner
-6. **Select any element** on your page
-7. **Describe what you want to change** using natural language
-8. **Watch the magic happen!** ✨
+2. **Install Cursor CLI**: `npm install -g @cursor/cli` (for Cursor Bridge)
+3. **Start Viber** in your project directory: `viber start`
+4. **Viber creates a proxy** that intercepts your running app
+5. **Your app opens automatically** in the browser with Viber injected
+6. **Click the floating Viber icon** (🤖) in the bottom-right corner
+7. **Select Cursor Bridge** as your AI provider
+8. **Select any element** on your page
+9. **Describe what you want to change** using natural language
+10. **Watch the magic happen!** ✨
 
 **No manual integration required!** Viber automatically detects your framework and injects itself.
 
@@ -101,20 +103,12 @@ Connect Viber to your favorite development environment:
   Complete command reference and configuration options.
 </Card>
 
-<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
-  Connect Viber to your IDE and AI coding assistants.
+<Card title="AI Bridge Setup" icon="brain" href="/viber/ai-bridge">
+  Connect to Cursor CLI and other local AI coding agents.
 </Card>
 
-<Card title="How It Works" icon="puzzle-piece" href="/viber/plugin">
-  Learn how Viber automatically injects itself through a proxy.
-</Card>
-
-<Card title="Extension Setup" icon="code" href="/viber/extension">
-  Set up IDE extensions and browser integrations.
-</Card>
-
-<Card title="API Reference" icon="code" href="/api-reference/introduction">
-  Complete API documentation and examples.
+<Card title="Universal Plugin" icon="puzzle-piece" href="/viber/plugin">
+  Learn how Viber automatically injects itself into your app.
 </Card>
 </CardGroup>
 

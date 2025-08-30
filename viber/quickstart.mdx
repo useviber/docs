@@ -21,11 +21,22 @@ Viber works with **ALL major frameworks**: React, Vue, Angular, Svelte, and Vani
 npm install -g @useviber/cli
 ```
 
+### Step 2: Install Cursor CLI (for AI Bridge)
+
+```bash
+npm install -g @cursor/cli
+```
+
+**Verify installation:**
+```bash
+cursor-agent --version
+```
+
 <Tip>
-The CLI automatically installs the MCP server. If you get permission errors, run: `viber mcp:install`
+If you get permission errors, you may need to use `sudo npm install -g @cursor/cli` or configure npm to use a different directory.
 </Tip>
 
-### Step 2: Start Viber in Your Project
+### Step 3: Start Viber in Your Project
 
 Navigate to your project directory and run:
 
@@ -41,14 +52,15 @@ viber start
 - Opens your browser with the proxied version
 - You see the floating Viber widget (🤖) immediately
 
-### Step 3: Use Viber
+### Step 4: Use Viber with AI Bridge
 
 1. **Your app opens automatically** in the browser (through Viber's proxy)
 2. **Look for the floating Viber widget** (🤖) in the bottom-right corner
 3. **Click the widget** to open the Viber interface
-4. **Click any element** on your page to select it
-5. **Describe your changes** using natural language
-6. **Watch the magic happen!** ✨
+4. **Choose "Cursor Bridge"** from the AI Provider Selection
+5. **Click any element** on your page to select it
+6. **Describe your changes** using natural language
+7. **Watch the magic happen!** ✨
 
 ## 🌐 Framework Examples
 
@@ -97,6 +109,35 @@ Your App (port 3000) → Viber Proxy (port 8426) → Browser
 - Handles communication between your app and Viber
 - Manages element selection and AI interactions
 
+## 🔌 AI Bridge Integration
+
+### What is AI Bridge?
+
+**AI Bridge** is Viber's local-only workflow that connects to Cursor CLI and other local AI coding agents. It provides:
+
+- 🚀 **Local processing** - No external servers required
+- 📡 **Real-time streaming** - See AI responses as they generate
+- 🧠 **Smart buffering** - Smooth, readable output
+- 🎯 **Element context** - AI understands what you're working on
+
+### How to Use Cursor Bridge
+
+1. **Select "Cursor Bridge"** in the AI Provider Selection popup
+2. **Click any element** on your page to select it
+3. **Type your instruction** in natural language
+4. **Submit** and watch Cursor CLI process your request
+5. **View streaming results** in real-time
+
+### Example Instructions
+
+```
+"Make this button larger and change the color to blue"
+"Add a hover effect to this card"
+"Convert this div to a React component"
+"Add error handling to this form"
+"Style this list with better spacing"
+```
+
 ## 🔧 Configuration Options
 
 ### Custom Ports
@@ -127,11 +168,11 @@ viber start --debug
 To get the full Viber experience, connect it to your IDE or AI coding assistant:
 
 <Card
-  title="Connect MCP"
-  icon="plug"
-  href="/viber/connect-mcp"
+  title="AI Bridge Setup"
+  icon="brain"
+  href="/viber/ai-bridge"
 >
-  Connect Viber to VS Code, Cursor, or any MCP-compatible tool
+  Connect Viber to Cursor CLI and other local AI coding agents
 </Card>
 
 ## 📱 What You'll See
@@ -215,10 +256,6 @@ Your project files remain completely unchanged:
 <CardGroup cols={2}>
 <Card title="CLI Commands" icon="terminal" href="/viber/cli">
   Learn all available Viber CLI commands and options
-</Card>
-
-<Card title="MCP Integration" icon="plug" href="/viber/connect-mcp">
-  Connect Viber to your favorite IDE and AI tools
 </Card>
 
 <Card title="Plugin Details" icon="puzzle-piece" href="/viber/plugin">
