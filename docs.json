@@ -37,28 +37,6 @@
         ]
       },
       {
-        "tab": "Development",
-        "groups": [
-          {
-            "group": "Setup & Configuration",
-            "pages": [
-              "development",
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Content Creation",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "API Reference",
         "groups": [
           {
@@ -77,26 +55,13 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "AI Tools",
-        "groups": [
-          {
-            "group": "Supported Tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
       }
     ],
     "global": {
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "https://viber.mintlify.app/",
           "icon": "book-open-cover"
         },
         {
@@ -149,6 +114,9 @@
       "x": "https://x.com/useviber",
       "github": "https://github.com/useviber/viber",
       "discord": "https://discord.gg/JK2KtgUz"
+    },
+    "contact": {
+      "email": "write.viber@gmail.com"
     }
   }
 }

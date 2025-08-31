@@ -1,16 +1,28 @@
 ---
-title: "IDE Extensions & Browser Integrations"
-description: "Set up Viber extensions for VS Code, Cursor, and other development environments"
+title: "Viber Extensions"
+description: "Integrate Viber with your favorite IDEs and development tools"
 ---
 
 ## What are Viber Extensions?
 
-**Viber Extensions** integrate Viber directly into your development environment, providing:
+**Viber Extensions** are IDE-specific integrations that connect your development environment directly to Viber's AI-powered workflow. They enable seamless communication between your IDE's AI tools and Viber's element selection system.
 
-- 🔌 **Native IDE integration** - Use Viber without leaving your editor
-- 🎯 **Context-aware assistance** - AI tools understand your current code
-- 🔄 **Real-time synchronization** - Changes sync between browser and IDE
-- 🚀 **Enhanced productivity** - Streamlined AI-powered development workflow
+## 🔄 How the Extension Workflow Works
+
+### 1. Install & Setup
+- **Install Viber Extension** in your IDE (VS Code, Cursor, etc.)
+- **Start Viber** in your frontend project: `viber start`
+- **Extension auto-connects** to the running Viber instance
+
+### 2. Select AI Provider
+- **Open Viber's UI** in your browser
+- **Choose "IDE AI"** as your AI provider
+- **Select your extension** from the available IDE extensions
+
+### 3. Start Using AI
+- **Select elements** on your page using Viber's interface
+- **Send prompts** directly to your IDE's AI assistant
+- **Get real-time responses** and code changes
 
 ## 🚀 Supported Environments
 
@@ -55,84 +67,62 @@ Create `.vscode/settings.json` in your project:
 }
 ```
 
-### Usage
+### How It Works
 
-1. **Open your project** in VS Code
-2. **Start Viber** in your project directory: `viber start`
+1. **Install Viber Extension** in VS Code
+2. **Start Viber** in your frontend project directory: `viber start`
 3. **Extension auto-connects** to the running Viber instance
-4. **Use Command Palette** (Ctrl+Shift+P / Cmd+Shift+P):
-   - `Viber: Open Interface`
-   - `Viber: Select Element`
-   - `Viber: Apply Changes`
+4. **In Viber's UI**, select "IDE AI" as your AI provider
+5. **Choose your extension** from the available IDE extensions
+6. **Start sending prompts** directly to your IDE's AI assistant
 
 ### Features
 
-- **Command Palette integration** - Quick access to Viber commands
-- **Status bar indicator** - Shows connection status
-- **Output panel** - View Viber logs and errors
-- **Workspace management** - Auto-detects project structure
+- **Automatic connection** to Viber when you start your project
+- **IDE AI integration** - Connect to your IDE's built-in AI tools
+- **Extension selection** - Choose which IDE extension to use
+- **Direct communication** - Send prompts straight to your IDE's AI
+- **Real-time updates** - See changes as they're applied
 
 ## 🎯 Cursor Integration
 
 ### Built-in Support
 
-Cursor has native CLI integration, making Viber AI Bridge integration seamless:
+Cursor integrates with Viber through the IDE AI provider:
 
-1. **Install Viber CLI**: `npm install -g @useviber/cli`
-2. **Install Cursor CLI**: `npm install -g @cursor/cli`
-3. **Start Viber** in your project: `viber start`
-4. **Select Cursor Bridge** in the AI Provider Selection
+1. **Install Viber Extension** in Cursor
+2. **Start Viber** in your project: `viber start`
+3. **Select "IDE AI"** as your AI provider in Viber
+4. **Choose Cursor** from the available IDE extensions
+5. **Start sending prompts** directly to Cursor's AI
 
-### AI Bridge Configuration
+### How It Works
 
-The AI Bridge automatically detects and uses Cursor CLI:
-
-```bash
-# Verify Cursor CLI installation
-cursor-agent --version
-
-# Start Viber with AI Bridge
-viber start
-```
-
-### Usage in Cursor
-
-- **Select Cursor Bridge** as your AI provider in Viber
-- **Element selection** provides context to Cursor CLI
-- **Local processing** - No external servers required
-- **Real-time streaming** - See AI responses as they generate
+- **Viber Extension** connects to your running Viber instance
+- **IDE AI Provider** routes your requests to Cursor's AI
+- **Element selection** provides context for AI processing
+- **Direct communication** - No MCP or external servers needed
+- **Real-time updates** as AI processes your requests
 
 ## 🔧 Continue Integration
 
 ### Setup
 
 1. **Install Continue**: `pip install continuedev`
-2. **Create config**: `continue config`
-3. **Use Viber AI Bridge** for local AI processing
+2. **Install Viber Extension** in your IDE
+3. **Start Viber** in your project: `viber start`
+4. **Select "IDE AI"** as your AI provider in Viber
+5. **Choose Continue** from the available IDE extensions
 
-### Configuration
+### How It Works
 
-The AI Bridge automatically integrates with Continue:
+- **Viber Extension** connects to your running Viber instance
+- **IDE AI Provider** routes your requests to Continue's AI
+- **Element selection** provides context for AI processing
+- **Direct communication** - No external servers needed
+- **Real-time updates** as AI processes your requests
 
-```bash
-# Install Viber CLI
-npm install -g @useviber/cli
-
-# Install Cursor CLI (for AI Bridge)
-npm install -g @cursor/cli
-
-# Start Viber with AI Bridge
-viber start
-```
-
-### Usage
-
-- **Start Continue**: `continue`
-- **Select Cursor Bridge** in Viber's AI Provider Selection
-- **Element selection** provides context to AI
-- **Local processing** - No external servers required
-
-## �� Browser Extensions
+##  Browser Extensions
 
 ### Chrome Extension
 
@@ -310,26 +300,21 @@ VIBER_DEBUG=false
 
 **Extension not connecting:**
 ```bash
-# Check if Viber CLI is running
+# Check if Viber is running
 viber status
 
 # Restart Viber
-viber restart
+viber start
 
-# Check extension logs
+# Check extension status in IDE
 # VS Code: View -> Output -> Viber
 ```
 
-**AI Bridge connection failed:**
+**IDE AI provider not working:**
 ```bash
-# Check AI Bridge status
-viber bridge:status
-
-# Verify Cursor CLI installation
-cursor-agent --version
-
-# Check API key
-viber whoami
+# Verify extension is installed and enabled
+# Check Viber's AI Provider Selection for "IDE AI" option
+# Ensure your IDE extension is selected in the dropdown
 ```
 
 **Element selection not working:**
