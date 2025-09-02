@@ -14,7 +14,7 @@ description: "Connect Viber to Cursor CLI and other local AI coding agents"
 First, install the Cursor CLI tool:
 
 ```bash
-npm install -g @cursor/cli
+curl https://cursor.com/install -fsS | bash
 ```
 
 **Verify installation:**
@@ -23,7 +23,7 @@ cursor-agent --version
 ```
 
 <Tip>
-If you get permission errors, you may need to use `sudo npm install -g @cursor/cli` or configure npm to use a different directory.
+If you get permission errors, you may need to use `curl https://cursor.com/install -fsS | bash` or configure npm to use a different directory.
 </Tip>
 
 ### 2. Start Viber with AI Bridge
@@ -126,7 +126,7 @@ viber start
 **"cursor-agent: command not found"**
 ```bash
 # Reinstall Cursor CLI
-npm install -g @cursor/cli
+curl https://cursor.com/install -fsS | bash
 
 # Check PATH
 which cursor-agent
